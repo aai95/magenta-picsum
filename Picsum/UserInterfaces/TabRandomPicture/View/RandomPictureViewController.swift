@@ -1,10 +1,10 @@
 import UIKit
 
-class ViewController: UIViewController {
+final class RandomPictureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .cyan
     }
 }
