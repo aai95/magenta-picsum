@@ -2,19 +2,23 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
+    // MARK: Override functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabBarItems()
     }
     
+    // MARK: Private functions
+    
     private func setupTabBarItems() {
-        let randomController = RandomPictureViewController()
+        let feedController = PictureViewController()
         let favoriteController = FavoritePictureViewController()
         
-        randomController.tabBarItem = UITabBarItem(
+        feedController.tabBarItem = UITabBarItem(
             title: nil,
-            image: .TabBar.random,
+            image: .TabBar.feed,
             tag: 0
         )
         favoriteController.tabBarItem = UITabBarItem(
@@ -22,6 +26,6 @@ final class MainTabBarController: UITabBarController {
             image: .TabBar.favorite,
             tag: 1
         )
-        viewControllers = [randomController, favoriteController]
+        viewControllers = [feedController, favoriteController]
     }
 }

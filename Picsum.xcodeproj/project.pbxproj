@@ -12,8 +12,12 @@
 		8EF93B802B57D34B005DD132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF93B7F2B57D34B005DD132 /* Assets.xcassets */; };
 		8EF93B832B57D34B005DD132 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF93B812B57D34B005DD132 /* LaunchScreen.storyboard */; };
 		8EF93B912B57F26E005DD132 /* FavoritePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B902B57F26E005DD132 /* FavoritePictureViewController.swift */; };
-		8EF93B932B57F2F7005DD132 /* RandomPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B922B57F2F7005DD132 /* RandomPictureViewController.swift */; };
+		8EF93B932B57F2F7005DD132 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B922B57F2F7005DD132 /* PictureViewController.swift */; };
 		8EF93B962B57F4AB005DD132 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B952B57F4AB005DD132 /* ImageExtension.swift */; };
+		8EF93B9B2B582EFA005DD132 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9A2B582EFA005DD132 /* PictureModel.swift */; };
+		8EF93B9E2B582F5B005DD132 /* PictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */; };
+		8EF93BA02B5831F6005DD132 /* ReusableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */; };
+		8EF93BA22B583366005DD132 /* PictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BA12B583366005DD132 /* PictureTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +28,12 @@
 		8EF93B822B57D34B005DD132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EF93B842B57D34B005DD132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EF93B902B57F26E005DD132 /* FavoritePictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePictureViewController.swift; sourceTree = "<group>"; };
-		8EF93B922B57F2F7005DD132 /* RandomPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPictureViewController.swift; sourceTree = "<group>"; };
+		8EF93B922B57F2F7005DD132 /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
 		8EF93B952B57F4AB005DD132 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		8EF93B9A2B582EFA005DD132 /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
+		8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModel.swift; sourceTree = "<group>"; };
+		8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewExtension.swift; sourceTree = "<group>"; };
+		8EF93BA12B583366005DD132 /* PictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +81,7 @@
 			children = (
 				8EF93B8B2B57EE0B005DD132 /* TabBar */,
 				8EF93B8D2B57F161005DD132 /* TabFavoritePicture */,
-				8EF93B8C2B57F149005DD132 /* TabRandomPicture */,
+				8EF93B8C2B57F149005DD132 /* TabPicture */,
 			);
 			path = UserInterfaces;
 			sourceTree = "<group>";
@@ -86,12 +94,14 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		8EF93B8C2B57F149005DD132 /* TabRandomPicture */ = {
+		8EF93B8C2B57F149005DD132 /* TabPicture */ = {
 			isa = PBXGroup;
 			children = (
+				8EF93B992B582EA8005DD132 /* Model */,
 				8EF93B8F2B57F1C6005DD132 /* View */,
+				8EF93B9C2B582F2D005DD132 /* ViewModel */,
 			);
-			path = TabRandomPicture;
+			path = TabPicture;
 			sourceTree = "<group>";
 		};
 		8EF93B8D2B57F161005DD132 /* TabFavoritePicture */ = {
@@ -113,7 +123,8 @@
 		8EF93B8F2B57F1C6005DD132 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8EF93B922B57F2F7005DD132 /* RandomPictureViewController.swift */,
+				8EF93BA12B583366005DD132 /* PictureTableViewCell.swift */,
+				8EF93B922B57F2F7005DD132 /* PictureViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -122,8 +133,25 @@
 			isa = PBXGroup;
 			children = (
 				8EF93B952B57F4AB005DD132 /* ImageExtension.swift */,
+				8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8EF93B992B582EA8005DD132 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8EF93B9A2B582EFA005DD132 /* PictureModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8EF93B9C2B582F2D005DD132 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,11 +224,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF93B932B57F2F7005DD132 /* RandomPictureViewController.swift in Sources */,
+				8EF93B932B57F2F7005DD132 /* PictureViewController.swift in Sources */,
+				8EF93BA02B5831F6005DD132 /* ReusableViewExtension.swift in Sources */,
 				8EF93B7B2B57D34A005DD132 /* MainTabBarController.swift in Sources */,
 				8EF93B772B57D34A005DD132 /* AppDelegate.swift in Sources */,
+				8EF93B9B2B582EFA005DD132 /* PictureModel.swift in Sources */,
 				8EF93B962B57F4AB005DD132 /* ImageExtension.swift in Sources */,
 				8EF93B912B57F26E005DD132 /* FavoritePictureViewController.swift in Sources */,
+				8EF93BA22B583366005DD132 /* PictureTableViewCell.swift in Sources */,
+				8EF93B9E2B582F5B005DD132 /* PictureViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
