@@ -14,7 +14,9 @@ final class MainTabBarController: UITabBarController {
     
     private func setupTabBarItems() {
         let feedController = PictureViewController()
-        let favoriteController = FavoritePictureViewController()
+        let favoriteController = PictureViewController()
+        
+        favoriteController.showFavorites = true
         
         feedController.tabBarItem = UITabBarItem(
             title: nil,

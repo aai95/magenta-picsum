@@ -3,6 +3,10 @@ import Combine
 
 final class PictureViewController: UIViewController {
     
+    // MARK: Internal properties
+    
+    var showFavorites: Bool = false
+    
     // MARK: Private properties
     
     private let viewModel = PictureViewModel()
@@ -35,7 +39,7 @@ final class PictureViewController: UIViewController {
         view.backgroundColor = .white
         
         subscribeToPublishers()
-        viewModel.loadPictures()
+        viewModel.loadPictures(onlyFavorites: showFavorites)
     }
     
     // MARK: Private functions
