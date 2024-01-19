@@ -9,7 +9,7 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
             guard let model = pictureModel else {
                 return
             }
-            coverImage.image = UIImage(named: model.name)
+            coverImage.image = UIImage(named: model.downloadURL)
             favoriteButton.tintColor = model.isFavorite ? .yellow : .gray
         }
     }

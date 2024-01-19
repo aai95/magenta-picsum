@@ -9,7 +9,7 @@ final class PictureViewController: UIViewController {
     
     // MARK: Private properties
     
-    private let viewModel = PictureViewModel()
+    private lazy var viewModel = PictureViewModel(forFavorites: showFavorites)
     private var subscribers = Array<AnyCancellable>()
     
     private lazy var pictureTable: UITableView = {
@@ -39,7 +39,7 @@ final class PictureViewController: UIViewController {
         view.backgroundColor = .white
         
         subscribeToPublishers()
-        viewModel.loadPictures(onlyFavorites: showFavorites)
+        viewModel.loadNextPictures()
     }
     
     // MARK: Private functions

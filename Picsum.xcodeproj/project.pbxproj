@@ -17,6 +17,9 @@
 		8EF93B9E2B582F5B005DD132 /* PictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */; };
 		8EF93BA02B5831F6005DD132 /* ReusableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */; };
 		8EF93BA22B583366005DD132 /* PictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BA12B583366005DD132 /* PictureTableViewCell.swift */; };
+		8EF93BA42B5A9F3E005DD132 /* URLRequestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BA32B5A9F3E005DD132 /* URLRequestExtension.swift */; };
+		8EF93BA62B5AA023005DD132 /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */; };
+		8EF93BAB2B5AC31B005DD132 /* PictureBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BAA2B5AC31B005DD132 /* PictureBody.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModel.swift; sourceTree = "<group>"; };
 		8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewExtension.swift; sourceTree = "<group>"; };
 		8EF93BA12B583366005DD132 /* PictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTableViewCell.swift; sourceTree = "<group>"; };
+		8EF93BA32B5A9F3E005DD132 /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
+		8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
+		8EF93BAA2B5AC31B005DD132 /* PictureBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBody.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,8 @@
 			children = (
 				8EF93B952B57F4AB005DD132 /* ImageExtension.swift */,
 				8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */,
+				8EF93BA32B5A9F3E005DD132 /* URLRequestExtension.swift */,
+				8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -122,6 +130,7 @@
 		8EF93B992B582EA8005DD132 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8EF93BAA2B5AC31B005DD132 /* PictureBody.swift */,
 				8EF93B9A2B582EFA005DD132 /* PictureModel.swift */,
 			);
 			path = Model;
@@ -205,10 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EF93BA62B5AA023005DD132 /* URLSessionExtension.swift in Sources */,
+				8EF93BA42B5A9F3E005DD132 /* URLRequestExtension.swift in Sources */,
 				8EF93B932B57F2F7005DD132 /* PictureViewController.swift in Sources */,
 				8EF93BA02B5831F6005DD132 /* ReusableViewExtension.swift in Sources */,
 				8EF93B7B2B57D34A005DD132 /* MainTabBarController.swift in Sources */,
 				8EF93B772B57D34A005DD132 /* AppDelegate.swift in Sources */,
+				8EF93BAB2B5AC31B005DD132 /* PictureBody.swift in Sources */,
 				8EF93B9B2B582EFA005DD132 /* PictureModel.swift in Sources */,
 				8EF93B962B57F4AB005DD132 /* ImageExtension.swift in Sources */,
 				8EF93BA22B583366005DD132 /* PictureTableViewCell.swift in Sources */,
