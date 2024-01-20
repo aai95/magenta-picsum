@@ -13,10 +13,10 @@ final class MainTabBarController: UITabBarController {
     // MARK: Private functions
     
     private func setupTabBarItems() {
-        let feedController = PictureViewController()
-        let favoriteController = PictureViewController()
+        let viewModel = PictureViewModel()
         
-        favoriteController.showFavorites = true
+        let feedController = PictureViewController(viewModel: viewModel)
+        let favoriteController = PictureViewController(viewModel: viewModel, onlyFavorites: true)
         
         feedController.tabBarItem = UITabBarItem(
             title: nil,

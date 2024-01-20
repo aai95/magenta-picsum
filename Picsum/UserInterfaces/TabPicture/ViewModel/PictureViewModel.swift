@@ -4,42 +4,20 @@ final class PictureViewModel {
     
     // MARK: Private properties
     
-    @Published
-    private(set) var pictureModels: Array<PictureModel> = []
+    @Published private(set) var feedPictureModels: Array<PictureModel> = []
+    @Published private(set) var favoritePictureModels: Array<PictureModel> = []
     
+    private let storage = PictureStorage.shared
     private let session = URLSession.shared
     private let perPage = 10
-    private let onlyFavorites: Bool
     
     private var lastLoadedPage: Int?
     private var currentTask: URLSessionTask?
     
-    // MARK: Initializers
-    
-    init(forFavorites value: Bool) {
-        self.onlyFavorites = value
-    }
-    
     // MARK: Internal functions
     
-    func loadNextPictures() {
-        if onlyFavorites {
-            readFromCache()
-        } else {
-            fetchNextPage()
-        }
-    }
-    
-    // MARK: Private functions
-    
-    private func readFromCache() {
-        let testCache = [
-            PictureModel(id: "483", link: "\(baseURL.absoluteString)/id/483/600/300", isFavorite: true),
-            PictureModel(id: "566", link: "\(baseURL.absoluteString)/id/566/600/300", isFavorite: true),
-        ]
-        if pictureModels.count != testCache.count {
-            pictureModels = testCache
-        }
+    func readFromStorage() {
+        favoritePictureModels = storage.storedPictureModels
     }
     
     func fetchNextPage() {
@@ -57,7 +35,7 @@ final class PictureViewModel {
             case .success(let bodies):
                 assert(Thread.isMainThread, "This code must be executed on the main thread")
                 
-                self.pictureModels.append(contentsOf: bodies.map({ PictureModel(from: $0) }))
+                self.feedPictureModels.append(contentsOf: convert(from: bodies))
                 self.lastLoadedPage = nextPage
                 self.currentTask = nil
                 
@@ -70,11 +48,47 @@ final class PictureViewModel {
         task.resume()
     }
     
+    func toggleFavoriteForPicture(with id: String) {
+        var modelToStore: PictureModel?
+        
+        if let index = feedPictureModels.firstIndex(where: { $0.id == id }) { // Toggle on Feed
+            let old = feedPictureModels[index]
+            let new = old.toggleIsFavorite()
+            feedPictureModels[index] = new
+            modelToStore = new
+        }
+        
+        if let index = favoritePictureModels.firstIndex(where: { $0.id == id }) { // Remove from Favorite
+            let old = favoritePictureModels[index]
+            let new = old.toggleIsFavorite()
+            favoritePictureModels.remove(at: index)
+            modelToStore = new
+        } else if let model = modelToStore { // Add to Favorite
+            favoritePictureModels.append(model)
+        }
+        
+        if let model = modelToStore { // Update in Storage
+            storage.updateStorage(using: model)
+        }
+    }
+    
+    // MARK: Private functions
+    
     private func makePictureRequest(for page: Int) -> URLRequest {
         return URLRequest.makeHTTPRequest(
             path: "/v2/list"
             + "?page=\(page)"
             + "&limit=\(perPage)"
         )
+    }
+    
+    private func convert(from bodies: [PictureBody]) -> [PictureModel] {
+        return bodies.map { body in
+            PictureModel(
+                id: body.id,
+                link: "\(baseURL.absoluteString)/id/\(body.id)/600/300",
+                isFavorite: favoritePictureModels.contains(where: { $0.id == body.id })
+            )
+        }
     }
 }

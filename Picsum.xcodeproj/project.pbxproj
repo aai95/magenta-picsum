@@ -21,6 +21,7 @@
 		8EF93BA62B5AA023005DD132 /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */; };
 		8EF93BAB2B5AC31B005DD132 /* PictureBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BAA2B5AC31B005DD132 /* PictureBody.swift */; };
 		8EF93BAE2B5AFEEF005DD132 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8EF93BAD2B5AFEEF005DD132 /* Kingfisher */; };
+		8EF93BB12B5BD87E005DD132 /* PictureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93BB02B5BD87E005DD132 /* PictureStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		8EF93BA32B5A9F3E005DD132 /* URLRequestExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtension.swift; sourceTree = "<group>"; };
 		8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
 		8EF93BAA2B5AC31B005DD132 /* PictureBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureBody.swift; sourceTree = "<group>"; };
+		8EF93BB02B5BD87E005DD132 /* PictureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				8EF93B942B57F432005DD132 /* Extensions */,
 				8EF93B8A2B57EDCF005DD132 /* UserInterfaces */,
+				8EF93BAF2B5BD7D7005DD132 /* Utilities */,
 				8EF93B762B57D34A005DD132 /* AppDelegate.swift */,
 				8EF93B7F2B57D34B005DD132 /* Assets.xcassets */,
 				8EF93B812B57D34B005DD132 /* LaunchScreen.storyboard */,
@@ -144,6 +147,14 @@
 				8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8EF93BAF2B5BD7D7005DD132 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8EF93BB02B5BD87E005DD132 /* PictureStorage.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EF93BB12B5BD87E005DD132 /* PictureStorage.swift in Sources */,
 				8EF93BA62B5AA023005DD132 /* URLSessionExtension.swift in Sources */,
 				8EF93BA42B5A9F3E005DD132 /* URLRequestExtension.swift in Sources */,
 				8EF93B932B57F2F7005DD132 /* PictureViewController.swift in Sources */,

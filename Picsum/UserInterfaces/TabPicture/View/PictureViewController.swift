@@ -3,13 +3,11 @@ import Combine
 
 final class PictureViewController: UIViewController {
     
-    // MARK: Internal properties
-    
-    var showFavorites: Bool = false
-    
     // MARK: Private properties
     
-    private lazy var viewModel = PictureViewModel(forFavorites: showFavorites)
+    private let viewModel: PictureViewModel
+    private let onlyFavorites: Bool
+    
     private var subscribers = Array<AnyCancellable>()
     
     private lazy var pictureTable: UITableView = {
@@ -23,6 +21,19 @@ final class PictureViewController: UIViewController {
         
         return table
     }()
+    
+    // MARK: Initializers
+    
+    init(viewModel: PictureViewModel, onlyFavorites: Bool = false) {
+        self.viewModel = viewModel
+        self.onlyFavorites = onlyFavorites
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: Override functions
     
@@ -39,7 +50,11 @@ final class PictureViewController: UIViewController {
         view.backgroundColor = .white
         
         subscribeToPublishers()
-        viewModel.loadNextPictures()
+        viewModel.readFromStorage()
+        
+        if !onlyFavorites {
+            viewModel.fetchNextPage()
+        }
     }
     
     // MARK: Private functions
@@ -60,15 +75,27 @@ final class PictureViewController: UIViewController {
     }
     
     private func subscribeToPublishers() {
-        viewModel.$pictureModels
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] _ in
-                guard let self else {
-                    return
-                }
-                self.pictureTable.reloadData()
-            })
-            .store(in: &subscribers)
+        if onlyFavorites {
+            viewModel.$favoritePictureModels
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [weak self] _ in
+                    guard let self else {
+                        return
+                    }
+                    self.pictureTable.reloadData()
+                })
+                .store(in: &subscribers)
+        } else {
+            viewModel.$feedPictureModels
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [weak self] _ in
+                    guard let self else {
+                        return
+                    }
+                    self.pictureTable.reloadData()
+                })
+                .store(in: &subscribers)
+        }
     }
 }
 
@@ -79,18 +106,22 @@ extension PictureViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         
-        if indexPath.row == lastRowIndex {
-            viewModel.loadNextPictures()
+        if indexPath.row == lastRowIndex && !onlyFavorites {
+            viewModel.fetchNextPage()
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.pictureModels.count
+        return onlyFavorites ? viewModel.favoritePictureModels.count : viewModel.feedPictureModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PictureTableViewCell = tableView.dequeueDefaultReusableCell()
-        cell.pictureModel = viewModel.pictureModels[indexPath.row]
+        let models = onlyFavorites ? viewModel.favoritePictureModels : viewModel.feedPictureModels
+        
+        cell.pictureModel = models[indexPath.row]
+        cell.delegate = self
+        
         return cell
     }
 }
@@ -101,5 +132,17 @@ extension PictureViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - PictureTableViewCellDelegate
+
+extension PictureViewController: PictureTableViewCellDelegate {
+    
+    func didTapFavorite(in cell: PictureTableViewCell) {
+        guard let id = cell.pictureModel?.id else {
+            return
+        }
+        viewModel.toggleFavoriteForPicture(with: id)
     }
 }

@@ -1,9 +1,15 @@
 import UIKit
 import Kingfisher
 
+protocol PictureTableViewCellDelegate: AnyObject {
+    func didTapFavorite(in cell: PictureTableViewCell)
+}
+
 final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
     
     // MARK: Internal properties
+    
+    weak var delegate: PictureTableViewCellDelegate?
     
     var pictureModel: PictureModel? {
         didSet {
@@ -63,6 +69,7 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
     
     @objc
     private func didTapFavoriteButton() {
+        delegate?.didTapFavorite(in: self)
     }
     
     private func addSubviews() {
