@@ -8,6 +8,6 @@ extension UIImage {
     }
     
     enum TabPicture {
-        static let favorite = UIImage(systemName: "sparkle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
+        static let favorite = UIImage(systemName: "sparkle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32))
     }
 }

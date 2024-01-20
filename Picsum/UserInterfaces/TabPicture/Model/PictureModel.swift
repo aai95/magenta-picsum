@@ -2,18 +2,18 @@ import Foundation
 
 struct PictureModel {
     let id: String
-    let downloadURL: String
+    let link: String
     let isFavorite: Bool
     
-    init(id: String, downloadURL: String, isFavorite: Bool) {
+    init(id: String, link: String, isFavorite: Bool) {
         self.id = id
-        self.downloadURL = downloadURL
+        self.link = link
         self.isFavorite = isFavorite
     }
     
     init(from body: PictureBody) {
         self.id = body.id
-        self.downloadURL = body.downloadURL
+        self.link = "\(baseURL.absoluteString)/id/\(body.id)/600/300"
         self.isFavorite = false
     }
 }

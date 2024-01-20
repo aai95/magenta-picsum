@@ -76,6 +76,14 @@ final class PictureViewController: UIViewController {
 
 extension PictureViewController: UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
+        
+        if indexPath.row == lastRowIndex {
+            viewModel.loadNextPictures()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.pictureModels.count
     }

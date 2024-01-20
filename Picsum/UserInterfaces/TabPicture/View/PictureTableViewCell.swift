@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
     
@@ -9,7 +10,9 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
             guard let model = pictureModel else {
                 return
             }
-            coverImage.image = UIImage(named: model.downloadURL)
+            coverImage.kf.indicatorType = .activity
+            coverImage.kf.setImage(with: URL(string: model.link))
+            
             favoriteButton.tintColor = model.isFavorite ? .yellow : .gray
         }
     }
@@ -46,6 +49,14 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Override functions
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        coverImage.kf.cancelDownloadTask()
     }
     
     // MARK: Private functions

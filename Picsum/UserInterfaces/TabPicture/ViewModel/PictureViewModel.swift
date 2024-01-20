@@ -8,7 +8,7 @@ final class PictureViewModel {
     private(set) var pictureModels: Array<PictureModel> = []
     
     private let session = URLSession.shared
-    private let perPage = 5
+    private let perPage = 10
     private let onlyFavorites: Bool
     
     private var lastLoadedPage: Int?
@@ -33,10 +33,13 @@ final class PictureViewModel {
     // MARK: Private functions
     
     private func readFromCache() {
-        pictureModels = [
-            PictureModel(id: "0", downloadURL: "Mountain", isFavorite: true),
-            PictureModel(id: "1", downloadURL: "Walrus", isFavorite: true),
+        let testCache = [
+            PictureModel(id: "483", link: "\(baseURL.absoluteString)/id/483/600/300", isFavorite: true),
+            PictureModel(id: "566", link: "\(baseURL.absoluteString)/id/566/600/300", isFavorite: true),
         ]
+        if pictureModels.count != testCache.count {
+            pictureModels = testCache
+        }
     }
     
     func fetchNextPage() {
@@ -57,8 +60,6 @@ final class PictureViewModel {
                 self.pictureModels.append(contentsOf: bodies.map({ PictureModel(from: $0) }))
                 self.lastLoadedPage = nextPage
                 self.currentTask = nil
-                
-                bodies.forEach({ print($0) })
                 
             case .failure(let error):
                 print(error)
