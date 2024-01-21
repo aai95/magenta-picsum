@@ -9,6 +9,7 @@ final class PictureViewController: UIViewController {
     private let onlyFavorites: Bool
     
     private var subscribers = Array<AnyCancellable>()
+    private lazy var alertHelper = AlertHelper(delegate: self)
     
     private lazy var pictureTable: UITableView = {
         let table = UITableView(frame: .zero)
@@ -77,6 +78,7 @@ final class PictureViewController: UIViewController {
     private func subscribeToPublishers() {
         if onlyFavorites {
             viewModel.$favoritePictureModels
+                .dropFirst()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: { [weak self] _ in
                     guard let self else {
@@ -87,6 +89,7 @@ final class PictureViewController: UIViewController {
                 .store(in: &subscribers)
         } else {
             viewModel.$feedPictureModels
+                .dropFirst()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: { [weak self] _ in
                     guard let self else {
@@ -95,7 +98,27 @@ final class PictureViewController: UIViewController {
                     self.pictureTable.reloadData()
                 })
                 .store(in: &subscribers)
+            viewModel.$networkError
+                .dropFirst()
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { [weak self] _ in
+                    guard let self else {
+                        return
+                    }
+                    self.makeRetryAlertController()
+                })
+                .store(in: &subscribers)
         }
+    }
+    
+    private func makeRetryAlertController() {
+        let retryAlertModel = alertHelper.makeRetryAlertModel { [weak self] _ in
+            guard let self else {
+                return
+            }
+            self.viewModel.fetchNextPage()
+        }
+        alertHelper.makeAlertController(from: retryAlertModel)
     }
 }
 
@@ -144,5 +167,14 @@ extension PictureViewController: PictureTableViewCellDelegate {
             return
         }
         viewModel.toggleFavoriteForPicture(with: id)
+    }
+}
+
+// MARK: - AlertHelperDelegate
+
+extension PictureViewController: AlertHelperDelegate {
+    
+    func didMakeAlert(controller: UIAlertController) {
+        present(controller, animated: true)
     }
 }

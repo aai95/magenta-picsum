@@ -6,6 +6,7 @@ final class PictureViewModel {
     
     @Published private(set) var feedPictureModels: Array<PictureModel> = []
     @Published private(set) var favoritePictureModels: Array<PictureModel> = []
+    @Published private(set) var networkError: NetworkError?
     
     private let storage = PictureStorage.shared
     private let session = URLSession.shared
@@ -40,7 +41,8 @@ final class PictureViewModel {
                 self.currentTask = nil
                 
             case .failure(let error):
-                print(error)
+                self.networkError = error as? NetworkError
+                self.currentTask = nil
             }
         }
         
