@@ -12,7 +12,7 @@
 		8EF93B802B57D34B005DD132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF93B7F2B57D34B005DD132 /* Assets.xcassets */; };
 		8EF93B832B57D34B005DD132 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EF93B812B57D34B005DD132 /* LaunchScreen.storyboard */; };
 		8EF93B932B57F2F7005DD132 /* PictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B922B57F2F7005DD132 /* PictureViewController.swift */; };
-		8EF93B962B57F4AB005DD132 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B952B57F4AB005DD132 /* ImageExtension.swift */; };
+		8EF93B962B57F4AB005DD132 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B952B57F4AB005DD132 /* UIImageExtension.swift */; };
 		8EF93B9B2B582EFA005DD132 /* PictureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9A2B582EFA005DD132 /* PictureModel.swift */; };
 		8EF93B9E2B582F5B005DD132 /* PictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */; };
 		8EF93BA02B5831F6005DD132 /* ReusableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */; };
@@ -34,7 +34,7 @@
 		8EF93B822B57D34B005DD132 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EF93B842B57D34B005DD132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8EF93B922B57F2F7005DD132 /* PictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewController.swift; sourceTree = "<group>"; };
-		8EF93B952B57F4AB005DD132 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		8EF93B952B57F4AB005DD132 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8EF93B9A2B582EFA005DD132 /* PictureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureModel.swift; sourceTree = "<group>"; };
 		8EF93B9D2B582F5B005DD132 /* PictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModel.swift; sourceTree = "<group>"; };
 		8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewExtension.swift; sourceTree = "<group>"; };
@@ -128,9 +128,9 @@
 		8EF93B942B57F432005DD132 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8EF93B952B57F4AB005DD132 /* ImageExtension.swift */,
 				8EF93B9F2B5831F6005DD132 /* ReusableViewExtension.swift */,
 				8EF93BB42B5D2BB8005DD132 /* StringExtension.swift */,
+				8EF93B952B57F4AB005DD132 /* UIImageExtension.swift */,
 				8EF93BA32B5A9F3E005DD132 /* URLRequestExtension.swift */,
 				8EF93BA52B5AA023005DD132 /* URLSessionExtension.swift */,
 			);
@@ -250,7 +250,7 @@
 				8EF93BB52B5D2BB8005DD132 /* StringExtension.swift in Sources */,
 				8EF93BAB2B5AC31B005DD132 /* PictureBody.swift in Sources */,
 				8EF93B9B2B582EFA005DD132 /* PictureModel.swift in Sources */,
-				8EF93B962B57F4AB005DD132 /* ImageExtension.swift in Sources */,
+				8EF93B962B57F4AB005DD132 /* UIImageExtension.swift in Sources */,
 				8EF93BA22B583366005DD132 /* PictureTableViewCell.swift in Sources */,
 				8EF93B9E2B582F5B005DD132 /* PictureViewModel.swift in Sources */,
 			);

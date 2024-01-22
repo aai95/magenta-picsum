@@ -23,6 +23,10 @@ final class PictureViewController: UIViewController {
         return table
     }()
     
+    private lazy var placeholderImage = UIImageView(
+        image: onlyFavorites ? .Placeholder.favorite : .Placeholder.feed
+    )
+    
     // MARK: Initializers
     
     init(viewModel: PictureViewModel, onlyFavorites: Bool = false) {
@@ -62,16 +66,21 @@ final class PictureViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(pictureTable)
+        view.addSubview(placeholderImage)
     }
     
     private func activateConstraints() {
         pictureTable.translatesAutoresizingMaskIntoConstraints = false
+        placeholderImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             pictureTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             pictureTable.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             pictureTable.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             pictureTable.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            placeholderImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            placeholderImage.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
         ])
     }
     
@@ -85,6 +94,7 @@ final class PictureViewController: UIViewController {
                         return
                     }
                     self.pictureTable.reloadData()
+                    self.showOrHidePlaceholder()
                 })
                 .store(in: &subscribers)
         } else {
@@ -96,6 +106,7 @@ final class PictureViewController: UIViewController {
                         return
                     }
                     self.pictureTable.reloadData()
+                    self.showOrHidePlaceholder()
                 })
                 .store(in: &subscribers)
             viewModel.$networkError
@@ -119,6 +130,16 @@ final class PictureViewController: UIViewController {
             self.viewModel.fetchNextPage()
         }
         alertHelper.makeAlertController(from: retryAlertModel)
+    }
+    
+    private func showOrHidePlaceholder() {
+        if onlyFavorites && viewModel.favoritePictureModels.isEmpty {
+            placeholderImage.isHidden = false
+        } else if !onlyFavorites && viewModel.feedPictureModels.isEmpty {
+            placeholderImage.isHidden = false
+        } else {
+            placeholderImage.isHidden = true
+        }
     }
 }
 

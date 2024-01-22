@@ -20,12 +20,12 @@ final class MainTabBarController: UITabBarController {
         
         feedController.tabBarItem = UITabBarItem(
             title: nil,
-            image: .TabBar.feed,
+            image: .Tab.feed,
             tag: 0
         )
         favoriteController.tabBarItem = UITabBarItem(
             title: nil,
-            image: .TabBar.favorite,
+            image: .Tab.favorite,
             tag: 1
         )
         viewControllers = [feedController, favoriteController]

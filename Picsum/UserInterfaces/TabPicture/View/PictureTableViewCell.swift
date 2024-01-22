@@ -16,10 +16,27 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
             guard let model = pictureModel else {
                 return
             }
-            coverImage.kf.indicatorType = .activity
-            coverImage.kf.setImage(with: URL(string: model.link))
+            favoriteButton.tintColor = model.isFavorite ? .systemYellow : .systemGray
+            favoriteButton.isEnabled = false
             
-            favoriteButton.tintColor = model.isFavorite ? .yellow : .gray
+            coverImage.contentMode = .center
+            coverImage.kf.indicatorType = .activity
+            coverImage.kf.setImage(
+                with: URL(string: model.link),
+                placeholder: UIImage.Placeholder.picture,
+                completionHandler: { [weak self] result in
+                    guard let self else {
+                        return
+                    }
+                    switch result {
+                    case .success(_):
+                        self.favoriteButton.isEnabled = true
+                        self.coverImage.contentMode = .scaleAspectFill
+                    case .failure(_):
+                        break
+                    }
+                }
+            )
         }
     }
     
@@ -31,14 +48,13 @@ final class PictureTableViewCell: UITableViewCell, DefaultReusableView {
         image.layer.masksToBounds = true
         image.layer.cornerRadius = 16
         
-        image.contentMode = .scaleAspectFill
         return image
     }()
     
     private lazy var favoriteButton: UIButton = {
         let button = UIButton(type: .custom)
         
-        button.setImage(.TabPicture.favorite, for: .normal)
+        button.setImage(.Button.favorite, for: .normal)
         button.addTarget(self, action: #selector(didTapFavoriteButton), for: .touchUpInside)
         
         return button
