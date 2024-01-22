@@ -1,5 +1,6 @@
 import UIKit
 import Combine
+import ProgressHUD
 
 final class PictureViewController: UIViewController {
     
@@ -58,6 +59,7 @@ final class PictureViewController: UIViewController {
         viewModel.readFromStorage()
         
         if !onlyFavorites {
+            ProgressHUD.show()
             viewModel.fetchNextPage()
         }
     }
@@ -107,6 +109,7 @@ final class PictureViewController: UIViewController {
                     }
                     self.pictureTable.reloadData()
                     self.showOrHidePlaceholder()
+                    ProgressHUD.dismiss()
                 })
                 .store(in: &subscribers)
             viewModel.$networkError
@@ -117,6 +120,7 @@ final class PictureViewController: UIViewController {
                         return
                     }
                     self.makeRetryAlertController()
+                    ProgressHUD.dismiss()
                 })
                 .store(in: &subscribers)
         }
@@ -127,6 +131,7 @@ final class PictureViewController: UIViewController {
             guard let self else {
                 return
             }
+            ProgressHUD.show()
             self.viewModel.fetchNextPage()
         }
         alertHelper.makeAlertController(from: retryAlertModel)
@@ -151,6 +156,7 @@ extension PictureViewController: UITableViewDataSource {
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         
         if indexPath.row == lastRowIndex && !onlyFavorites {
+            ProgressHUD.show()
             viewModel.fetchNextPage()
         }
     }
