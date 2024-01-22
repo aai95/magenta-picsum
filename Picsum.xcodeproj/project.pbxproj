@@ -81,11 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				8EF93B942B57F432005DD132 /* Extensions */,
+				8EF93BBC2B5EA75D005DD132 /* Resources */,
 				8EF93B8A2B57EDCF005DD132 /* UserInterfaces */,
 				8EF93BAF2B5BD7D7005DD132 /* Utilities */,
 				8EF93B762B57D34A005DD132 /* AppDelegate.swift */,
-				8EF93B7F2B57D34B005DD132 /* Assets.xcassets */,
-				8EF93B812B57D34B005DD132 /* LaunchScreen.storyboard */,
 				8EF93B842B57D34B005DD132 /* Info.plist */,
 			);
 			path = Picsum;
@@ -163,6 +162,15 @@
 				8EF93BB02B5BD87E005DD132 /* PictureStorage.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8EF93BBC2B5EA75D005DD132 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8EF93B7F2B57D34B005DD132 /* Assets.xcassets */,
+				8EF93B812B57D34B005DD132 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
