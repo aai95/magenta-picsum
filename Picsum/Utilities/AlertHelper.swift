@@ -6,9 +6,15 @@ protocol AlertHelperDelegate: AnyObject {
 
 struct AlertHelper {
     
-    // MARK: Internal properties
+    // MARK: Private properties
     
-    weak var delegate: AlertHelperDelegate?
+    private weak var delegate: AlertHelperDelegate?
+    
+    // MARK: Initializers
+    
+    init(delegate: AlertHelperDelegate) {
+        self.delegate = delegate
+    }
     
     // MARK: Internal functions
     
