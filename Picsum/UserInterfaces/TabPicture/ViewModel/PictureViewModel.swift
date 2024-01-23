@@ -1,12 +1,33 @@
 import Foundation
 
-final class PictureViewModel {
+protocol PictureViewModelProtocol: AnyObject {
     
-    // MARK: Private properties
+    var feedPictureModelsPublisher: Published<Array<PictureModel>>.Publisher { get }
+    var favoritePictureModelsPublisher: Published<Array<PictureModel>>.Publisher { get }
+    var networkErrorPublisher: Published<NetworkError?>.Publisher { get }
+    
+    var feedPictureModels: Array<PictureModel> { get }
+    var favoritePictureModels: Array<PictureModel> { get }
+    var networkError: NetworkError? { get }
+    
+    func readFromStorage()
+    func fetchNextPage()
+    func toggleFavoriteForPicture(with id: String)
+}
+
+final class PictureViewModel: PictureViewModelProtocol {
+    
+    // MARK: Internal properties
+    
+    var feedPictureModelsPublisher: Published<Array<PictureModel>>.Publisher { $feedPictureModels }
+    var favoritePictureModelsPublisher: Published<Array<PictureModel>>.Publisher { $favoritePictureModels }
+    var networkErrorPublisher: Published<NetworkError?>.Publisher { $networkError }
     
     @Published private(set) var feedPictureModels: Array<PictureModel> = []
     @Published private(set) var favoritePictureModels: Array<PictureModel> = []
     @Published private(set) var networkError: NetworkError?
+    
+    // MARK: Private properties
     
     private let storage = PictureStorage.shared
     private let session = URLSession.shared

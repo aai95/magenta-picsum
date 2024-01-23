@@ -6,7 +6,7 @@ final class PictureViewController: UIViewController {
     
     // MARK: Private properties
     
-    private let viewModel: PictureViewModel
+    private let viewModel: PictureViewModelProtocol
     private let onlyFavorites: Bool
     
     private var subscribers = Array<AnyCancellable>()
@@ -30,7 +30,7 @@ final class PictureViewController: UIViewController {
     
     // MARK: Initializers
     
-    init(viewModel: PictureViewModel, onlyFavorites: Bool = false) {
+    init(viewModel: PictureViewModelProtocol, onlyFavorites: Bool = false) {
         self.viewModel = viewModel
         self.onlyFavorites = onlyFavorites
         
@@ -88,7 +88,7 @@ final class PictureViewController: UIViewController {
     
     private func subscribeToPublishers() {
         if onlyFavorites {
-            viewModel.$favoritePictureModels
+            viewModel.favoritePictureModelsPublisher
                 .dropFirst()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: { [weak self] _ in
@@ -100,7 +100,7 @@ final class PictureViewController: UIViewController {
                 })
                 .store(in: &subscribers)
         } else {
-            viewModel.$feedPictureModels
+            viewModel.feedPictureModelsPublisher
                 .dropFirst()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: { [weak self] _ in
@@ -112,7 +112,7 @@ final class PictureViewController: UIViewController {
                     ProgressHUD.dismiss()
                 })
                 .store(in: &subscribers)
-            viewModel.$networkError
+            viewModel.networkErrorPublisher
                 .dropFirst()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveValue: { [weak self] _ in
