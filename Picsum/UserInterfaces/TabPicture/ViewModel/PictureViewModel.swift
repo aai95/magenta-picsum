@@ -29,12 +29,18 @@ final class PictureViewModel: PictureViewModelProtocol {
     
     // MARK: Private properties
     
-    private let storage = PictureStorage.shared
+    private let storage: PictureStorageProtocol
     private let session = URLSession.shared
     private let perPage = 10
     
     private var lastLoadedPage: Int?
     private var currentTask: URLSessionTask?
+    
+    // MARK: Initializers
+    
+    init(storage: PictureStorageProtocol = PictureStorage.shared) {
+        self.storage = storage
+    }
     
     // MARK: Internal functions
     

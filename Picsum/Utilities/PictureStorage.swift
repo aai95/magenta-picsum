@@ -1,10 +1,19 @@
 import Foundation
 
-final class PictureStorage {
+protocol PictureStorageProtocol: AnyObject {
+    
+    static var shared: PictureStorageProtocol { get }
+    
+    var storedPictureModels: Array<PictureModel> { get set }
+    
+    func updateStorage(using picture: PictureModel)
+}
+
+final class PictureStorage: PictureStorageProtocol {
     
     // MARK: Internal properties
     
-    static let shared = PictureStorage()
+    static var shared: PictureStorageProtocol = PictureStorage()
     
     var storedPictureModels: Array<PictureModel> {
         get {

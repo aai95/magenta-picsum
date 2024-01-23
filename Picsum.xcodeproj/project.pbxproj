@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E09E85C2B5FE5F600CDEC89 /* PictureViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09E85B2B5FE5F600CDEC89 /* PictureViewControllerTests.swift */; };
+		8E09E8632B5FF12700CDEC89 /* PictureViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E09E8622B5FF12700CDEC89 /* PictureViewModelTests.swift */; };
 		8EF93B772B57D34A005DD132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B762B57D34A005DD132 /* AppDelegate.swift */; };
 		8EF93B7B2B57D34A005DD132 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF93B7A2B57D34A005DD132 /* MainTabBarController.swift */; };
 		8EF93B802B57D34B005DD132 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EF93B7F2B57D34B005DD132 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		8E09E8592B5FE5F600CDEC89 /* PicsumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicsumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E09E85B2B5FE5F600CDEC89 /* PictureViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewControllerTests.swift; sourceTree = "<group>"; };
+		8E09E8622B5FF12700CDEC89 /* PictureViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModelTests.swift; sourceTree = "<group>"; };
 		8EF93B732B57D34A005DD132 /* Picsum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Picsum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF93B762B57D34A005DD132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EF93B7A2B57D34A005DD132 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				8E09E85B2B5FE5F600CDEC89 /* PictureViewControllerTests.swift */,
+				8E09E8622B5FF12700CDEC89 /* PictureViewModelTests.swift */,
 			);
 			path = PicsumTests;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E09E85C2B5FE5F600CDEC89 /* PictureViewControllerTests.swift in Sources */,
+				8E09E8632B5FF12700CDEC89 /* PictureViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
